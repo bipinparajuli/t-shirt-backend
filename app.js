@@ -16,15 +16,14 @@ const orderRoutes = require("./routes/order");
 
 //DB Connection
 mongoose
-  .connect("mongodb+srv://admin:admin@cluster0.un7oh.mongodb.net/t-shirt?retryWrites=true&w=majority", {
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
   })
   .then(() => {
     console.log("DB CONNECTED");
-  }).catch(err=>console.log(err))
-  ;
+  });
 
 //Middlewares
 app.use(bodyParser.json());
