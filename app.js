@@ -16,7 +16,7 @@ const orderRoutes = require("./routes/order");
 
 //DB Connection
 mongoose
-  .connect(process.env.DATABASE, {
+  .connect("mongodb+srv://admin:admin@cluster0.un7oh.mongodb.net/t-shirt?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
