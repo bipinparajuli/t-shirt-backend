@@ -31,9 +31,7 @@ app.use(cookieParser());
 app.use(cors());
 
 //My Routes
-app.get("/",(res,res)=>{
-  res.send("<h1>Hello welcome</h1>")
-})
+
 
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
