@@ -55,6 +55,7 @@ exports.createProduct = (req, res) => {
     //save to the DB
     product.save((err, product) => {
       if (err) {
+     console.log(err);
         res.status(400).json({
           error: "Saving tshirt in DB failed"
         });
@@ -137,6 +138,7 @@ exports.updateProduct = (req, res) => {
 //product listing
 
 exports.getAllProducts = (req, res) => {
+  console.log(req.query);
   let limit = req.query.limit ? parseInt(req.query.limit) : 8;
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
 
