@@ -55,7 +55,6 @@ exports.createProduct = (req, res) => {
     //save to the DB
     product.save((err, product) => {
       if (err) {
-     console.log(err);
         res.status(400).json({
           error: "Saving tshirt in DB failed"
         });
@@ -101,6 +100,8 @@ exports.updateProduct = (req, res) => {
   form.keepExtensions = true;
 
   form.parse(req, (err, fields, file) => {
+
+    console.log(fields);
     if (err) {
       return res.status(400).json({
         error: "problem with image"
@@ -125,6 +126,7 @@ exports.updateProduct = (req, res) => {
 
     //save to the DB
     product.save((err, product) => {
+
       if (err) {
         res.status(400).json({
           error: "Updation of product failed"
@@ -138,16 +140,16 @@ exports.updateProduct = (req, res) => {
 //product listing
 
 exports.getAllProducts = (req, res) => {
-  console.log(req.query);
   let limit = req.query.limit ? parseInt(req.query.limit) : 8;
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
 
   Product.find()
     .select("-photo")
-    .populate("category")
+    // .populate("category")
     .sort([[sortBy, "asc"]])
     .limit(limit)
     .exec((err, products) => {
+      console.log(err);
       if (err) {
         return res.status(400).json({
           error: "NO product FOUND"
